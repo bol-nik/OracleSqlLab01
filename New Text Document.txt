@@ -1,0 +1,36 @@
+create table dept(
+d_no number(4) not null primary key,
+d_name varchar2(25) not null,
+location varchar2(200) not null) 
+
+create table Emp(
+e_no number(4) not null primary key,
+e_name varchar2(25) not null,
+date_hire date not null,
+salary number(10,5) not null,
+address varchar2(200) not null,
+d_no number(4) not null,
+constraint e_fk_d_no foreign key(d_no) references dept(d_no))
+
+а) создание нового отдела;
+create or replace procedure new_dept(p_d_name in dept.d_name%type,p_location in dept.location%type) is
+v_d_no dept.d_no%type;
+e_dept exception;
+begin 
+select count(*) into v_d_no from dept
+where d_name=p_d_name;
+if v_d_no>0 then raise e_dept;end if;
+
+select count(*) into v_d_no from dept;
+if v_d_no>0 then select max(d_no)+1 into v_d_no from dept;
+else v_d_no:=1;end if;
+
+insert into dept(d_no,d_name,location) values(v_d_no,p_d_name,p_location);
+exception
+when e_dept then raise_application_error(-20005,'Dept Exist');
+end new_dept;
+
+
+=====================================================
+begin new_dept('Syktyvkar TransNeft','Россия,Республика Коми, г.Сыктывкар, ул.Коммунистическая, д.24, оф.1');end
+begin new_dept('Kirov GazKIROV','Россия,Кировская область, г.Киров, ул.Ленина, д.100, оф.159');end

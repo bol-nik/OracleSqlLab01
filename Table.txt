@@ -1,0 +1,93 @@
+create table sale( 
+data date not null, 
+c_id number(4) not null, 
+p_id number(4) not null, 
+sp_id number(4) not null, 
+qty number(3), 
+constraint s_fk1 foreign key(c_id) references customer(c_id), 
+constraint s_fk2 foreign key(p_id) references product(p_id), 
+constraint s_fk3 foreign key(sp_id) references sperson(sp_id));
+
+create table sperson( 
+sp_id number(4) not null, 
+sp_name varchar2(25) not null, 
+man_id number(4), of_id number(4) not null, comm number(2), 
+constraint sp_pk primary key(sp_id), 
+constraint sp_fk foreign key(of_id) 
+references office(of_id));
+
+insert into sperson values(12, 'Baster Sances', 27, 10, 10); 
+insert into sperson values(35, 'Bridjit Bovari', 27, 11, 11); 
+insert into sperson values(44, 'Albert Aidj', 27, 13, 12);  
+insert into sperson values(27, 'Terii Cardon', '', 12, 15); 
+insert into sperson values(39, 'Goro Atsuma', 44, 13, 10); 
+insert into sperson values(37, 'Elena Ermana', 12, 10, 13); 
+insert into sperson values(23, 'Fransua Muar', 35, 11, 9);  
+insert into sperson values(14, 'Masai Matsu', 44, 13, 11); 
+insert into sperson values(10, 'Rodny Djons', 27,12,10)
+
+Create table country(
+cn_id number(4) not null primary key,
+country varchar2(25)not null)
+
+create table manufact(
+m_id number(4) not null primary key,
+m_name varchar(25) not null,
+cn_id number(4) not null,
+address varchar(25) not null)
+
+create table sperson( 
+sp_id number(4) not null primary key, 
+sp_name varchar2(25) not null, 
+man_id number(4), 
+of_id number(4) not null, 
+comm number(2),  
+constraint sp_fk foreign key(of_id) references office(of_id));
+
+insert into country values(1,'Austria')
+insert into country values(2,'Chili')
+insert into country values(3,'Japan')
+insert into country values(4,'New-Zealand')
+insert into country values(5,'Nigeria')
+insert into country values(6,'Peru')
+insert into country values(7,'USA')
+
+insert into office values(10,'Buenos-Aires');
+insert into office values(11,'Bruxelles');
+insert into office values(12,'Chicago');
+insert into office values(13,'Tokyo');
+
+insert into manufact values(210,'Odejda "Kivi"',4,'Aucland')
+insert into manufact values(253,'Mednye izdelia',5,'Lagos')
+insert into manufact values(317,'Lampy Lama',6,'Lima')
+
+insert into customer values(100,'Wotaib',3,'Tokyo')
+insert into customer values(101,'Maltz',1,'Zaltsburg')
+insert into customer values(105,'Djefferson',7,'Chicago')
+insert into customer values(110,'Gomes',2,'Santiago')
+
+insert into product values(1035,'Sweater',210,375.5,400)
+insert into product values(2241,'Desc lamp',317,225.3,250.5)
+insert into product values(2249,'Desc lamp',317,340.2,385.6)
+insert into product values(2518,'Bronze sculpture',253,500,530.8)
+
+insert into sale values('02.28.2011',100,2241,10,20)
+insert into sale values('02.12.2011',101,2518,23,30)
+insert into sale values(to_date('02/2011/15','MM/YYYY/DD'),101,1035,23,15)
+insert into sale values('02.19.2011',100,2518,39,20)
+insert into sale values('02.02.2011',101,1035,23,20)
+insert into sale values('02.05.2011',105,2241,10,10)
+insert into sale values('02.22.2011',110,2518,37,15)
+insert into sale values('02.14.2011',105,2249,10,5)
+insert into sale values('02.01.2011',101,2249,23,8)
+insert into sale values('02.04.2011',101,2241,23,25)
+
+
+
+
+
+
+
+
+
+

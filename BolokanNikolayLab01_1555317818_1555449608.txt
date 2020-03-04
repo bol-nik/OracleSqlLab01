@@ -1,0 +1,74 @@
+1. Вычислить: модуль всех значений столбца А, cosA, sinA, tgA, eA
+select abs(A), cos(a),sin(a),tan(a),exp(a) from ab
+
+2. Найти наибольшее и наименьшее целое для значений столбцов А и В.
+select a,b, ceil(a),ceil(b),floor(a),floor(b) from ab
+
+3. Вычислить 2В, -2А.
+select power(2,b),power(-2,a) from ab
+
+4. Определить знак для всех значений А и В.
+select sign(a), sign(b) from AB;
+
+5. Вычислить квадратный корень для значений столбца В.
+select sqrt(b) from ab
+
+6.Из таблицы PRODUCT вывести названия товаров (p¬_desc), цена продажи (price) которых кратна 0.6.
+select p_desc,price from Product 
+where mod(price,0.6)=0
+
+7. Объединить в один столбец название фирмы-производителя (m_name) и адрес фирмы-производителя (табл. MANUFACT):
+select m_name ||' - '|| address from Manufact 
+
+8. Записать названия товаров (p_desc) прописными и строчными буквами (табл. PRODUCT).
+select upper(p_desc),lower(p_desc) from Product 
+
+9. Перед фамилией клиента (ct_name) поставить горизонтальную черту. Общая длина поля должна составить 15 символов (табл. CUSTOMER).
+select lpad(c_name,15,'|') from Customer
+
+10. После фамилии клиента (c_name) поставить горизонтальную черту. Общая длина поля должна составить 15 символов (табл. CUSTOMER).
+select rpad(c_name,15,'|') from Customer
+
+11.Удалить в названиях стран(country) в таблице COUNTRY первые 2 буквы 'US'.
+select country, ltrim(country,'US') from country
+
+12. Удалить в столбце sp_name все сочетания символов 'an' ( табл.SPERSON).
+select sp_name, replace(sp_name,'an') from sperson
+
+13. Заменить в столбце sp_name все сочетания символов 'an' на '_n' (табл.SPERSON).
+select sp_name,replace(sp_name,'an','_n') from sperson
+
+14. Для данных столбца p_desc таблицы PRODUCT вывести в отдельный столбец 3 символа, начиная с четвертого.
+select p_desc, substr(p_desc, 4, 3) from product  
+
+15. Для данных столбца p_desc таблицы PRODUCT вывести в отдельный столбец хвостовые символы, начиная с седьмого. 
+select p_desc, substr(p_desc, 7) from product  
+
+16. Вывести исходные данные для таблицы cod_ssn
+select substr(ssn,1,3)||'-'||substr(ssn,4,2)||'-'||substr(ssn,6) from cod_ssn
+
+17. Определить номер позиции первой буквы 'o' в столбце sp_name (табл. SPERSON) с начала строки.
+select sp_name, instr(sp_name, 'e') from sperson
+
+18. Определить номер позиции второй буквы 'o' в столбце sp_name (табл. SPERSON), начиная просмотр со второго символа.
+select sp_name, instr(sp_name,'o',2,2) from sperson
+
+19. Определить номер позиции второй буквы 'o' в столбце sp_name (табл. SPERSON), начиная просмотр с третьего символа.
+select sp_name, instr(sp_name,'o',3,2) from sperson
+
+20. Определить количество символов для каждой строки столбца sp_name таблицы SPERSON.
+select sp_name, length(sp_name) from Sperson
+
+21. Вывести в отдельные столбцы фамилию и имя сотрудника.
+select substr(sp_name, 0, instr(sp_name, ' ')) name, substr(sp_name, instr(sp_name, ' ')) surname from sperson
+
+
+
+
+
+
+
+
+
+
+
